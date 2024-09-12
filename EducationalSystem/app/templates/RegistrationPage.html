@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register page</title>
+    <link rel="stylesheet" href="../static/Webpage.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Register a new user</h1>
+        <form method="post" action="/registration">
+            <input type="text" name="username" placeholder="Username" title="Username">
+            <input type="password" name="password" placeholder="Password" title="Password">
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Syntax for fetching the flash message and displaying it in the UI -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-message">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+
+</html>

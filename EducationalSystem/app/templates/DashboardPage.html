@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload page</title>
+    <link rel="stylesheet" href="../static/Webpage.css">
+</head>
+<body>
+
+    <!--
+    Vurdere å wrappe denne i en flash message og sette
+    den til position abosolute for å ha den over dashboardet
+    -->
+    <div class="bakgrunn med opacity 70% grey og z-index 0 for å fremheve upload boksen"></div>
+    <div class="container">
+        <h1>Here you can upload a file securely</h1>
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file" placeholder="Upload file" title="file">
+            <button type="submit">Upload file</button>
+        </form>
+
+        <!-- Syntax for fetching the flash message and displaying it in the UI -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-message">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+
+</html>
