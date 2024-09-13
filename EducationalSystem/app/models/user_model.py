@@ -5,7 +5,6 @@ import hashlib
 
 DB_PATH = "app/users.db"
 
-
 def db_connection():
     connection = sqlite3.connect(DB_PATH)
     return connection
@@ -16,7 +15,8 @@ def create_user(username, password, role):
     cursor = connection.cursor()
 
     try:
-        cursor.execute("INSERT INTO users (username, password, api_key) VALUES (?)", (api_key,))
+        cursor.execute("INSERT INTO users (username, password, api_key, role, reset_token) VALUES (?, ?, ?, ?, ?)",
+                       (username, password, api_key, role, api_key))
         connection.commit()
     except sqlite3.IntegrityError as e:
         print(f"IntegrityError: {e}")

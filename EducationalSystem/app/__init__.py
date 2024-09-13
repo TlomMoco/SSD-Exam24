@@ -8,7 +8,7 @@ def create_app():
     init_db()
 
     from EducationalSystem.app.controllers import auth_controller, file_controller, user_controller
-    app.register_blueprint(auth_controller)
+    app.register_blueprint(auth_controller.auth_bp)
     app.register_blueprint(file_controller)
     app.register_blueprint(user_controller)
 
