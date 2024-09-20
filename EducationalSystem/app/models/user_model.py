@@ -1,12 +1,12 @@
+from flask import current_app
 import sqlite3
 import os
 import hashlib
 
 
-DB_PATH = "app/users.db"
-
 def db_connection():
-    connection = sqlite3.connect(DB_PATH)
+    db_path = os.path.join(current_app.root_path, "users.db")
+    connection = sqlite3.connect(db_path)
     return connection
 
 def create_user(username, password, role):
@@ -15,7 +15,7 @@ def create_user(username, password, role):
     cursor = connection.cursor()
 
     try:
-        cursor.execute("INSERT INTO users (username, password, user_token, role, reset_token) VALUES (?, ?, ?, ?, ?)",
+        cursor.execute("""INSERT INTO users (username, password, user_token, role, reset_token) VALUES (?, ?, ?, ?, ?)""",
                        (username, password, user_token, role, None))
         connection.commit()
     except sqlite3.IntegrityError as e:
@@ -50,7 +50,7 @@ def set_user_token(user_id, user_token):
     connection.commit()
     connection.close()
 
-def clear_user_token(user_id, user_token):
+def clear_user_token(user_id):
     set_user_token(user_id, None)
 
 def find_user_token(user_token):

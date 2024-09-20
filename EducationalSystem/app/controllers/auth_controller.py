@@ -2,6 +2,7 @@ import datetime
 import os
 import jwt
 import bcrypt
+import bleach
 from functools import wraps
 from flask import render_template, request, redirect, url_for, session, flash, Blueprint
 from EducationalSystem.app.models import user_model
@@ -64,6 +65,11 @@ def register_user():
         username = request.form['username']
         password = request.form['password']
         role = request.form['role']
+
+        # Sanitizing inputs
+        username = bleach.clean(username, tags=[], attributes={}, strip=True)
+        role = bleach.clean(role, tags=[], attributes={}, strip=True)
+
         hashed_password = password_encryption(password)
         if username == "" or password == "" or role == "":
             flash("User credentials must be filled out", "error")
@@ -77,7 +83,7 @@ def register_user():
 
 
 # This would normally be handled with a 2FA where you could send the password via SMTP
-# But I didn't have the time to fix that, so here is a emergency solution
+# But I didn't have the time to fix that, so here is an emergency solution
 def generate_reset_token(user):
     payload = {
         "user_id": user[0],

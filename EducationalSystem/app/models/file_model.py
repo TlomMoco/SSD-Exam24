@@ -1,10 +1,11 @@
-import sqlite3
+from flask import current_app
 from datetime import datetime
-
-DB_PATH = "app/users.db"
+import os
+import sqlite3
 
 def db_connection():
-    connection = sqlite3.connect(DB_PATH)
+    db_path = os.path.join(current_app.root_path, "users.db")
+    connection = sqlite3.connect(db_path)
     return connection
 
 def save_file_metadata(filename, uploader_id, content):

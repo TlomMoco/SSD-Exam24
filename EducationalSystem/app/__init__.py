@@ -1,9 +1,10 @@
 import sqlite3
 from flask import Flask
+import os
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('app.config.Config')
+    app.config.from_object('EducationalSystem.app.config.Config')
 
     init_db()
 
@@ -15,7 +16,9 @@ def create_app():
 
 
 def init_db():
-    db_path = "app/users.db"
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_path = os.path.join(base_dir, 'users.db')
+    #db_path = "app/users.db"
     connection = sqlite3.connect(db_path)
     cursor = connection.cursor()
     cursor.execute('''
