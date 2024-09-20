@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset token</title>
+    <link rel="stylesheet" href="../static/Webpage.css">
+</head>
+<body>
+    <div class="container">
+        <p>Your reset token: {{ token }}</p>
+        <p>This would usually be handled with 2FA</p>
+        <p>Use the above token to <a href="/reset_password">reset your password</a>.</p>
+        <!-- Syntax for fetching the flash message and displaying it in the UI -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-message">
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

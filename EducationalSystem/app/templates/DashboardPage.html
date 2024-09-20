@@ -5,19 +5,28 @@
     <title>Upload page</title>
     <link rel="stylesheet" href="../static/Webpage.css">
 </head>
-<body>
 
-    <!--
-    Vurdere å wrappe denne i en flash message og sette
-    den til position abosolute for å ha den over dashboardet
-    -->
-    <div class="bakgrunn med opacity 70% grey og z-index 0 for å fremheve upload boksen"></div>
+<body>
     <div class="container">
-        <h1>Here you can upload a file securely</h1>
+        <h1>Welcome, {{ username }}</h1>
+        <p>Your role: {{ role }}</p>
+        <h2>Uploaded files</h2>
+        <ul>
+            {% if files %}
+                {% for file in files %}
+                    <li><a href="{{ url_for('file_controller.download_file', filename=file[1]) }}">{{ file[1] }}</a></li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        {% if role == "teacher" %}
         <form method="post" action="/upload" enctype="multipart/form-data">
             <input type="file" name="file" placeholder="Upload file" title="file">
             <button type="submit">Upload file</button>
         </form>
+        {% else %}
+            <p>You do not have permission to upload files.</p>
+        {% endif %}
 
         <!-- Syntax for fetching the flash message and displaying it in the UI -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -29,6 +38,7 @@
                 </ul>
             {% endif %}
         {% endwith %}
+        <a class="button" type="button" href="/">Logout</a>
     </div>
 </body>
 

@@ -1,0 +1,116 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+label{
+    margin-bottom: 5px;
+    font-weight: bold;
+    display: block;
+}
+
+select{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li{
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    border-radius: 15px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+button, .button{
+    text-decoration: none;
+    border: 1px gray solid;
+    padding: 10px 20px;
+    background-color: azure;
+    border-radius: 5px;
+    color: springgreen;
+    margin: 2px;
+}
+
+.flash-message{
+    list-style-type: none;
+    padding: 0;
+}
+
+.flash-message li {
+    padding: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.flash-message li.success{
+    background-color: azure;
+    color: springgreen;
+}
+
+.flash-message li.error{
+    background-color: #f8d7da;
+    color: red;
+}
+
+button:hover, .button:hover{
+    color: azure;
+    background-color: springgreen;
+    transition: 0.5s;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    font-size: 14px;
+}
+
+h1{
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}

@@ -8,9 +8,16 @@
 <body>
     <div class="container">
         <h1>Register a new user</h1>
-        <form method="post" action="/registration">
+        <form method="post" action="/register">
             <input type="text" name="username" placeholder="Username" title="Username">
             <input type="password" name="password" placeholder="Password" title="Password">
+            <label>
+                <select name="role">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+            </label>
+
             <button type="submit">Register</button>
         </form>
 
